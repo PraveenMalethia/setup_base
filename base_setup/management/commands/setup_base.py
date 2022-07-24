@@ -6,6 +6,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 class Command(BaseCommand):
     help = 'Displays current time'
+
+    def add_arguments(self, parser):
+        parser.add_argument('app_name', type=str, help='App Name')
+
     def handle(self, *args, **kwargs):
         app_name = kwargs.get('app_name',None)
         # path of new app
