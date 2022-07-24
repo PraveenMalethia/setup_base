@@ -8,17 +8,13 @@ Django Base Setup
 Quick start
 -----------
 
-1. Add "basesetup" to your INSTALLED_APPS setting like this::
+1. Add "base_setup" to your INSTALLED_APPS setting like this::
 
     INSTALLED_APPS = [
         ...
-        'basesetup',
+        'base_setup',
     ]
 
-2. Include the basesetup URLconf in your project urls.py like this::
+2. Run ``python manage.py setup_base <<app_name>>`` to create the basic app.
 
-    path('', include('basesetup.urls')),
-
-3. Run ``python manage.py setup_base <<app_name>>`` to create the basic app.
-
-4. Start the development server and visit http://127.0.0.1:8000/ (you'll see Obiwan-Kenobi).
+3. Start the development server and visit http://127.0.0.1:8000/ (you'll see Obiwan-Kenobi).
