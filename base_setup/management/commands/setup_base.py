@@ -1,8 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
-from pathlib import Path
+from django.conf import settings
 import os
-
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 class Command(BaseCommand):
     help = 'Displays current time'
@@ -14,7 +12,7 @@ class Command(BaseCommand):
         app_name = kwargs.get('app_name',None)
         # path of new app
         if app_name is not None:
-            newapp_path = BASE_DIR.parent.parent / kwargs.get('app_name')
+            newapp_path = settings.BASE_DIR / kwargs.get('app_name')
             if not os.path.exists(newapp_path):
                 # create app directory
                 os.makedirs(newapp_path)
