@@ -1,6 +1,10 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 import os
+from pathlib import Path
+
+UTILS_DIR = BASE_DIR = Path(__file__).resolve().parent / 'utils'
+TEMPLATES_DIR = BASE_DIR = Path(__file__).resolve().parent / 'utils/templates'
 
 class Command(BaseCommand):
     help = 'Displays current time'
@@ -20,48 +24,36 @@ class Command(BaseCommand):
                 init_py = open(str(newapp_path)+"\__init__.py", "w")
                 # create admin.py
                 admin = open(str(newapp_path)+"\\admin.py", "w")
-                admin.write("""from django.contrib import admin\n\n# Register your models here.""")
+                admin_dummy = open(str(UTILS_DIR/"admin.py"), "r")
+                admin.write(admin_dummy.read())
                 # create apps.py
                 apps = open(str(newapp_path)+"\\apps.py", "w")
+                apps_dummy = open(str(UTILS_DIR/"apps.py"), "r")
+                data = apps_dummy.read()
+                data = data.replace("AppCapitalName", kwargs.get('app_name').capitalize())
+                data = data.replace("AppName", kwargs.get('app_name'))
                 # write apps.py
-                apps.write(f"""
-from django.apps import AppConfig
-
-class {app_name.capitalize()}Config(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = '{app_name}'
-""")
+                apps.write(data)
                 # create models.py
                 models = open(str(newapp_path)+"\models.py", "w")
+                models_dummy = open(str(UTILS_DIR/"models.py"), "r")
                 # write models.py
-                models.write("""from django.db import models\n\n# Create your models here.""")
+                models.write(models_dummy.read())
                 # create test.py
                 tests = open(str(newapp_path)+"\\tests.py", "w")
+                test_dummy = open(str(UTILS_DIR/"tests.py"), "r")
                 # write test.py
-                tests.write("""from django.test import TestCase\n\n# Create your tests here.""")
+                tests.write(test_dummy.read())
                 # create urls.py
                 urls = open(str(newapp_path)+"\\urls.py", "w")
+                urls_dummy = open(str(UTILS_DIR/"urls.py"), "r")
                 # write urls.py
-                urls.write("""
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('', views.Index),
-]
-
-""")            
+                urls.write(urls_dummy.read())           
                 # create views.py
                 views = open(str(newapp_path)+"\\views.py", "w")
+                views_dummy = open(str(UTILS_DIR/"views.py"), "r")
                 # write views.py
-                views.write("""
-from django.shortcuts import render
-
-# Create your views here.
-
-def Index(request):
-    return render(request, 'index.html')
-""")
+                views.write(views_dummy.read())
                 os.makedirs(newapp_path / 'migrations')
                 os.makedirs(newapp_path / 'templates')
                 os.makedirs(newapp_path / 'static')
@@ -70,40 +62,12 @@ def Index(request):
                 os.makedirs(newapp_path / 'static/img')
                 migrations = open(str(newapp_path / 'migrations')+"\__init__.py", "w")
                 index_html = open(str(newapp_path / 'templates')+"\index.html", "w")
-                index_html.write("""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-</head>
-<body>
-    <div
-      style="width: 100%; height: 0; padding-bottom: 43%; position: relative"
-    >
-      <iframe
-        src="https://giphy.com/embed/xTiIzJSKB4l7xTouE8"
-        width="100%"
-        height="100%"
-        style="position: absolute"
-        frameborder="0"
-        class="giphy-embed"
-        allowfullscreen
-      ></iframe>
-    </div>
-    <p>
-      <a
-        href="https://giphy.com/gifs/starwars-star-wars-episode-3-xTiIzJSKB4l7xTouE8"
-        >via GIPHY</a
-      >
-    </p>
-  </body>
-</html>
-
-""")            
+                js_file = open(str(newapp_path / 'static/js')+"\index.js", "w")
+                style_file = open(str(newapp_path / 'static/css')+"\style.css", "w")
+                index_html_dummy = open(str(TEMPLATES_DIR/"index.html"), "r")
+                index_html.write(index_html_dummy.read())            
                 self.stdout.write(self.style.SUCCESS('Your App has been successfully created.'))
-
+            else:
+                raise CommandError('App already exists. please try with a different name.')
         else:
             self.stdout.write(self.style.ERROR('Please add a name for your app after setup_base <<app_name>>.'))

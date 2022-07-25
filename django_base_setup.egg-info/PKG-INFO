@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: django-base-setup
-Version: 0.4
+Version: 0.4.1.0
 Summary: A Django app to setup a basic Django app with views and tempalates ready to be used.
 Home-page: https://pypi.org/project/django-base-setup
 Author: Praveen Malethia
