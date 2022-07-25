@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: django-base-setup
-Version: 0.4.1.4
+Version: 0.4.1.5
 Summary: A Django app to setup a basic Django app with views and templates ready to be used.
 Home-page: https://pypi.org/project/django-base-setup
 Author: Praveen Malethia
@@ -22,9 +22,8 @@ Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 
-=====
 Django Base Setup
-=====
+
 
 "Django Base Setup" is a Django app to help you setup a basic Django project.
 
@@ -41,4 +40,6 @@ Quick start
 
 2. Run ``python manage.py setup_base <<app_name>>`` to create the basic app.
 
-3. Start the development server and visit http://127.0.0.1:8000/ (you'll see Obiwan-Kenobi).
+3. add the urls of newly created app into the main project.
+
+4. Start the development server and visit http://127.0.0.1:8000/ (you'll see Obiwan-Kenobi).

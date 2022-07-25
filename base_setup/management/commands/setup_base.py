@@ -7,7 +7,7 @@ UTILS_DIR = BASE_DIR = Path(__file__).resolve().parent / 'utils'
 TEMPLATES_DIR = BASE_DIR = Path(__file__).resolve().parent / 'utils/templates'
 
 class Command(BaseCommand):
-    help = 'Displays current time'
+    help = 'A Custom Command to create a new app with urls and views ready to be used with templates.'
 
     def add_arguments(self, parser):
         parser.add_argument('app_name', type=str, help='App Name')
