@@ -10,7 +10,6 @@ base_setup/models.py
 base_setup/tests.py
 base_setup/views.py
 base_setup/management/commands/setup_base.py
-base_setup/management/commands/__pycache__/setup_base.cpython-310.pyc
 base_setup/management/commands/utils/admin.py
 base_setup/management/commands/utils/apps.py
 base_setup/management/commands/utils/models.py
