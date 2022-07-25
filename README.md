@@ -1,6 +1,5 @@
-=====
 Django Base Setup
-=====
+
 
 "Django Base Setup" is a Django app to help you setup a basic Django project.
 
@@ -17,4 +16,6 @@ Quick start
 
 2. Run ``python manage.py setup_base <<app_name>>`` to create the basic app.
 
-3. Start the development server and visit http://127.0.0.1:8000/ (you'll see Obiwan-Kenobi).
+3. add the urls of newly created app into the main project.
+
+4. Start the development server and visit http://127.0.0.1:8000/ (you'll see Obiwan-Kenobi).
